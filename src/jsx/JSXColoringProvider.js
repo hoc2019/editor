@@ -55,12 +55,7 @@ class JSXColoringProvider {
         this.createDecoratorsByType(ast, jsxType, JSXTypes[jsxType].options, decorators);
       }
       return decorators;
-      // debugger
-      // this.JSXDecoratorIds = this.monacoEditor
-      //     .deltaDecorations(this.JSXDecoratorIds || [], decorators
-      //     );
 
-      // this.afterColorizeCallback && this.afterColorizeCallback([...this.JSXDecoratorIds]);
     }
   }
 
