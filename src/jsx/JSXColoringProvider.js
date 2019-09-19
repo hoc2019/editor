@@ -84,25 +84,25 @@ class JSXColoringProvider {
           decorators.push({
             range: this.locToMonacoRange(loc),
             options: {
-              inlineClassName: 'mtk3.variableDeclarator',
+              inlineClassName: 'mtk3.importDeclarator',
             },
           });
       }
 });
-      ast
-      .find(j.ArrowFunctionExpression)
-      .find(j.Identifier)
-      .forEach(p => {
-          const loc = p.value.loc;
-          if(loc){
-              decorators.push({
-                range: this.locToMonacoRange(loc),
-                options: {
-                  inlineClassName: 'mtk1.ArrowFunctionExpression',
-                },
-              });
-          }
-    });
+    //   ast
+    //   .find(j.ArrowFunctionExpression)
+    //   .find(j.Identifier)
+    //   .forEach(p => {
+    //       const loc = p.value.loc;
+    //       if(loc){
+    //           decorators.push({
+    //             range: this.locToMonacoRange(loc),
+    //             options: {
+    //               inlineClassName: 'mtk1.ArrowFunctionExpression',
+    //             },
+    //           });
+    //       }
+    // });
   
     ast.findJSXElements().forEach(p => {
       const loc = p.value.loc;
