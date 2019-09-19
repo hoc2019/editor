@@ -3,8 +3,7 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const shell = require('electron').shell;
 const globalShortcut = require('electron').globalShortcut
-const url = require('url');
-var fs = require('fs');
+
 // 保持window对象的全局引用,避免JavaScript对象被垃圾回收时,窗口被自动关闭.
 let mainWindow;
 
@@ -13,13 +12,12 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 1000,
+    resizable:false,
     webPreferences: {
       javascript: true,
       plugins: true,
       nodeIntegration: false, // 不集成 Nodejs
       webSecurity: false,
-      resizable:false,
-      devTools: true,
       preload: path.join(__dirname, './public/renderer.js'), // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
     },
   });
@@ -93,7 +91,7 @@ function createWindow() {
       label: '开发者工具',
       submenu: [
         {
-          label: '新建',
+          label: 'DevTool',
           click() {
             mainWindow.webContents.openDevTools();
           },
@@ -123,14 +121,13 @@ function createWindow() {
   mainWindow.loadURL('http://localhost:3000/');
 
   // 打开开发者工具，默认不打开
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // 关闭window时触发下列事件.
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
   globalShortcut.register('Cmd+D',()=>{
-    console.log('fuzhi')
     mainWindow.webContents.send('copyline');
   })
 
